@@ -9,19 +9,19 @@ namespace InfiniteLanguageDFA
     {
         //This contains all of the information a definite state needs.
         private bool accepting;
-        private Node transition0;
-        private Node transition1;
-        private bool marked0;
-        private bool marked1;
+        private Node transitionA;
+        private Node transitionB;
+        private bool markedA;
+        private bool markedB;
 
         //Default constructor
         public Node(bool a, Node t0, Node t1, bool m0, bool m1)
         {
             this.accepting = a;
-            this.transition0 = t0;
-            this.transition1 = t1;
-            this.marked0 = m0;
-            this.marked1 = m1;
+            this.transitionA = t0;
+            this.transitionB = t1;
+            this.markedA = m0;
+            this.markedB = m1;
         }
 
         //Getters
@@ -31,24 +31,24 @@ namespace InfiniteLanguageDFA
         }
 
         
-        public Node get0Transition()
+        public Node getATransition()
         {
-            return this.transition0;
+            return this.transitionA;
         }
 
-        public Node get1Transition()
+        public Node getBTransition()
         {
-            return this.transition1;
+            return this.transitionB;
         }
 
-        public bool is0Marked()
+        public bool isAMarked()
         {
-            return this.marked0;
+            return this.markedA;
         }
         
-        public bool is1Marked()
+        public bool isBMarked()
         {
-            return this.marked1;
+            return this.markedB;
         }
 
         //Setters
@@ -57,24 +57,24 @@ namespace InfiniteLanguageDFA
             this.accepting = b;
         }
 
-        public void set0Transition(Node n)
+        public void setATransition(Node n)
         {
-            this.transition0 = n;
+            this.transitionA = n;
         }
 
-        public void set1Transition(Node n)
+        public void setBTransition(Node n)
         {
-            this.transition1 = n;
+            this.transitionB = n;
         }
 
-        public void set0Marked(bool b)
+        public void setAMarked(bool b)
         {
-            this.marked0 = b;
+            this.markedA = b;
         }
 
-        public void set1Marked(bool b)
+        public void setBMarked(bool b)
         {
-            this.marked1 = b;
+            this.markedB = b;
         }
     }
 }
