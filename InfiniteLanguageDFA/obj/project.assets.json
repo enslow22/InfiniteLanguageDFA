@@ -8,30 +8,29 @@
     ".NETCoreApp,Version=v3.1": []
   },
   "packageFolders": {
-    "C:\\Users\\Ryan\\.nuget\\packages\\": {}
+    "/Users/kylesanchez/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Ryan\\source\\repos\\InfiniteLanguageDFA\\InfiniteLanguageDFA\\InfiniteLanguageDFA.csproj",
+      "projectUniqueName": "/Users/kylesanchez/Projects/InfiniteLanguageDFA/InfiniteLanguageDFA/InfiniteLanguageDFA.csproj",
       "projectName": "InfiniteLanguageDFA",
-      "projectPath": "C:\\Users\\Ryan\\source\\repos\\InfiniteLanguageDFA\\InfiniteLanguageDFA\\InfiniteLanguageDFA.csproj",
-      "packagesPath": "C:\\Users\\Ryan\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Ryan\\source\\repos\\InfiniteLanguageDFA\\InfiniteLanguageDFA\\obj\\",
+      "projectPath": "/Users/kylesanchez/Projects/InfiniteLanguageDFA/InfiniteLanguageDFA/InfiniteLanguageDFA.csproj",
+      "packagesPath": "/Users/kylesanchez/.nuget/packages/",
+      "outputPath": "/Users/kylesanchez/Projects/InfiniteLanguageDFA/InfiniteLanguageDFA/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Ryan\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        "/Users/kylesanchez/.config/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "netcoreapp3.1"
       ],
       "sources": {
-        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "netcoreapp3.1": {
+          "targetAlias": "netcoreapp3.1",
           "projectReferences": {}
         }
       },
@@ -43,6 +42,7 @@
     },
     "frameworks": {
       "netcoreapp3.1": {
+        "targetAlias": "netcoreapp3.1",
         "imports": [
           "net461",
           "net462",
@@ -58,7 +58,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.403\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/5.0.100/RuntimeIdentifierGraph.json"
       }
     }
   }
