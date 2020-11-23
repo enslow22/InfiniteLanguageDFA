@@ -24,13 +24,13 @@ namespace InfiniteLanguageDFA
             this.marked1 = m1;
         }
 
-
         //Getters
         public bool isAccepting()
         {
             return this.accepting;
         }
 
+        
         public Node get0Transition()
         {
             return this.transition0;
