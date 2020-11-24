@@ -26,13 +26,37 @@ namespace InfiniteLanguageDFA
         //Executes a DFS on a DFA. Returns true if the accept state is reached. Otherwise, false.
         public bool DFS(Node n)
         {
+            // check if current node is marked
             if (n.isMarked())
             {
+                // current node is a cycle
                 cycle = n;
+
+                if (cycle.isAccepting())
+                {
+                    // has a loop and 
+                    return true;
+                }
+                else
+                {
+                    // recursively call 
+                    DFS(n.getATransition());
+                    DFS(n.getBTransition());
+                }
             }
+            
+
+            // mark current node as marked
             n.setMarked(true);
-            DFS(n.getATransition());
-            DFS(n.getBTransition());
+
+
+            //DFS(n.getATransition());
+
+            //DFS(n.getBTransition());
+
+
+
+            // return false if language is not infinite
             return false;
         }
 
