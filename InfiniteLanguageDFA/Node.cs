@@ -8,29 +8,36 @@ namespace InfiniteLanguageDFA
     public class Node
     {
         //This contains all of the information a definite state needs.
+        private String name;
         private bool accepting;
         private Node transitionA;
         private Node transitionB;
+        private bool marked;
         private bool markedA;
         private bool markedB;
 
         //Default constructor
-        public Node(bool a, Node t0, Node t1, bool m0, bool m1)
+        public Node(String Name, bool a, Node tA, Node tB, bool mA, bool mB)
         {
+            this.name = Name;
             this.accepting = a;
-            this.transitionA = t0;
-            this.transitionB = t1;
-            this.markedA = m0;
-            this.markedB = m1;
+            this.transitionA = tA;
+            this.transitionB = tB;
+            this.marked = false;
+            this.markedA = mA;
+            this.markedB = mB;
         }
 
         //Getters
+        public String getName()
+        {
+            return this.name;
+        }
         public bool isAccepting()
         {
             return this.accepting;
         }
 
-        
         public Node getATransition()
         {
             return this.transitionA;
@@ -39,6 +46,11 @@ namespace InfiniteLanguageDFA
         public Node getBTransition()
         {
             return this.transitionB;
+        }
+
+        public bool isMarked()
+        {
+            return this.marked;
         }
 
         public bool isAMarked()
@@ -52,6 +64,10 @@ namespace InfiniteLanguageDFA
         }
 
         //Setters
+        public void setName(String s)
+        {
+            this.name = s;
+        }
         public void setAccepting(bool b)
         {
             this.accepting = b;
@@ -65,6 +81,11 @@ namespace InfiniteLanguageDFA
         public void setBTransition(Node n)
         {
             this.transitionB = n;
+        }
+
+        public void setMarked(bool b)
+        {
+            this.marked = b;
         }
 
         public void setAMarked(bool b)
