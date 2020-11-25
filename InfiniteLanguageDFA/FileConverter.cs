@@ -13,7 +13,7 @@ namespace InfiniteLanguageDFA
         Node[] DFA = null;
         public FileConverter()
         {
-            String path;
+            String path = "";
             if (File.Exists(path))
             {
                 using (StreamReader sr = File.OpenText(path))
@@ -73,7 +73,7 @@ namespace InfiniteLanguageDFA
 
             //First state name
             int comma = s.IndexOf(",");
-            states[0].setName(s.Substring(1,comma-2));
+            states[0].SetName(s.Substring(1,comma-2));
             //Parse the string here:
             while (true)
             {
