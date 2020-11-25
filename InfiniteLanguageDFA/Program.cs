@@ -15,22 +15,24 @@ namespace InfiniteLanguageDFA
      */
     class Program
     {
-        Node[] DFA;
-        Node cycle;
-        bool accepts;
         static void Main(string[] args)
         {
-            TestDFS test = new TestDFS();
-            //test.Test();
 
-            Console.WriteLine(test.Test());
-        }
+            FileConverter f = new FileConverter("fu");
+            Node[] DFA = f.GetDFA();
 
+            TestDFS Algorithm = new TestDFS(DFA);
 
-        //Parses a .txt file and returns the DFA encoded in it
-        public Node[] ParseFile(FileStream f)
-        {
-            return null;
+            bool b;
+
+            foreach (Node n in DFA)
+            {
+                if (n.IsStarting())
+                {
+                    b = Algorithm.DFSTakeTwo(n);
+                    Console.WriteLine(b);
+                }
+            }
         }
     }
 }

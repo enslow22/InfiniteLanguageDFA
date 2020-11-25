@@ -14,18 +14,23 @@ namespace InfiniteLanguageDFA
         private Node transitionA;
         private Node transitionB;
         private bool marked;
-        private bool markedA;
-        private bool markedB;
+        private bool marked2;
 
         //Default constructor
 
-        public Node()
+        public Node(String title)
         {
+            this.name = title;
+            this.starting = false;
+            this.accepting = false;
+            this.transitionA = null;
+            this.transitionB = null;
             this.marked = false;
+            this.marked2 = false;
         }
 
 
-        public Node(String Name, bool s, bool a, Node tA, Node tB, bool mA, bool mB)
+        public Node(String Name, bool s, bool a, Node tA, Node tB)
         {
             this.name = Name;
             this.starting = s;
@@ -33,20 +38,6 @@ namespace InfiniteLanguageDFA
             this.transitionA = tA;
             this.transitionB = tB;
             this.marked = false;
-            this.markedA = mA;
-            this.markedB = mB;
-        }
-
-        public Node(Node o)
-        {
-            this.name = o.name;
-            this.starting = o.starting;
-            this.accepting = o.accepting;
-            this.transitionA = new Node(o.transitionA);
-            this.transitionB = new Node(o.transitionB);
-            this.marked = o.marked;
-            this.markedA = o.markedA;
-            this.markedB = o.markedB;
         }
 
         //Getters
@@ -80,14 +71,9 @@ namespace InfiniteLanguageDFA
             return this.marked;
         }
 
-        public bool IsAMarked()
+        public bool IsMarked2()
         {
-            return this.markedA;
-        }
-        
-        public bool IsBMarked()
-        {
-            return this.markedB;
+            return this.marked2;
         }
 
         //Setters
@@ -121,14 +107,9 @@ namespace InfiniteLanguageDFA
             this.marked = b;
         }
 
-        public void SetAMarked(bool b)
+        public void SetMarked2(bool b)
         {
-            this.markedA = b;
-        }
-
-        public void SetBMarked(bool b)
-        {
-            this.markedB = b;
+            this.marked2 = b;
         }
     }
 }

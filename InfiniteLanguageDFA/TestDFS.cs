@@ -10,23 +10,24 @@
     class TestDFS
     {
         Node cycle;
-        Node[] testNodes;
+        bool cycleCheck = false;
+        Node[] DFA;
 
-        public TestDFS()
+        public TestDFS(Node[] d)
         {
-
+            this.DFA = d;
         }
 
         public bool Test()
         {
             bool yuh;
             Node[] testNodes = new Node[2];
-            testNodes[0] = new Node("loopTest", true, null, null, false, false);
+            testNodes[0] = new Node("loopTest", true, true, null, null);
 
             testNodes[0].SetATransition(testNodes[0]);
             testNodes[0].SetBTransition(testNodes[0]);
 
-            testNodes[1] = new Node("noLoop", false, null, null, false, false);
+            testNodes[1] = new Node("noLoop", false, true, null, null);
 
             testNodes[1].SetATransition(testNodes[1]);
             testNodes[1].SetBTransition(testNodes[1]);
@@ -70,6 +71,57 @@
 
             // return false if language is not infinite
             return false;
+        }
+
+        public bool DFSTakeTwo(Node n)
+        {
+            //We have visited this node before
+            if (n.IsMarked())
+            {
+                cycleCheck = true;
+
+                if (findAccept(n))
+                {
+                    return true;
+                }
+                else
+                {
+                    foreach (Node temp in DFA)
+                    {
+                        temp.SetMarked2(false);
+                    }
+                    return false;
+                }
+            }
+            //We have never visited this node
+            else
+            {
+                n.SetMarked(true);
+                return DFSTakeTwo(n.GetATransition()) ||
+                    DFSTakeTwo(n.GetBTransition());
+            }
+        }
+
+        public bool findAccept(Node n)
+        {
+            //Base case #1: n is an accepting state
+            if (n.IsAccepting())
+            {
+                return true;
+            }
+
+            //Base case #2: n is marked
+            if (n.IsMarked2())
+            {
+                return false;
+            }
+
+            //Recursive case: n is not marked
+            else
+            {
+                n.SetMarked2(true);
+                return findAccept(n.GetATransition()) || findAccept(n.GetBTransition());
+            }
         }
     }
 }

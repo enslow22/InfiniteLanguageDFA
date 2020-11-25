@@ -22,3 +22,4 @@ C:\Users\Ryan\source\repos\InfiniteLanguageDFA\InfiniteLanguageDFA\bin\Debug\net
 C:\Users\Ryan\source\repos\InfiniteLanguageDFA\InfiniteLanguageDFA\bin\Debug\netcoreapp3.1\InfiniteLanguageDFA.dll
 C:\Users\Ryan\source\repos\InfiniteLanguageDFA\InfiniteLanguageDFA\bin\Debug\netcoreapp3.1\InfiniteLanguageDFA.pdb
 C:\Users\Ryan\source\repos\InfiniteLanguageDFA\InfiniteLanguageDFA\obj\Debug\netcoreapp3.1\InfiniteLanguageDFA.genruntimeconfig.cache
+C:\Users\Ryan\source\repos\InfiniteLanguageDFA\InfiniteLanguageDFA\obj\Debug\netcoreapp3.1\InfiniteLanguageDFA.csprojAssemblyReference.cache
