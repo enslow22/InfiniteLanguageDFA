@@ -34,28 +34,25 @@ namespace InfiniteLanguageDFA
 
                 if (cycle.isAccepting())
                 {
-                    // has a loop and 
+                    // has a loop and can reach the accepting state
                     return true;
                 }
                 else
                 {
-                    // recursively call 
+                    // recursively call DFS on current node
                     DFS(n.getATransition());
                     DFS(n.getBTransition());
                 }
             }
-            
-
-            // mark current node as marked
-            n.setMarked(true);
-
-
-            //DFS(n.getATransition());
-
-            //DFS(n.getBTransition());
-
-
-
+            else
+            {
+                // if node isn't previously marked mark it
+                n.setMarked(true);
+                // recursively call function until a cycle is found.
+                DFS(n.getATransition());
+                DFS(n.getBTransition());
+            }
+          
             // return false if language is not infinite
             return false;
         }
