@@ -10,8 +10,6 @@ namespace InfiniteLanguageDFA
      * Complete The DFA structure (ideas?) I think a Node[] could work fine. I'm not sure. 
      * Complete DFS cycle search algorithm
      * Complete The Diagram or something IDK
-     * 
-     * 
      */
     class Program
     {
@@ -21,6 +19,15 @@ namespace InfiniteLanguageDFA
         static void Main(string[] args)
         {
             //Execute from main. Main will take in a file idk how yet
+
+            String filePath = " ";
+
+            FileConverter f = new FileConverter(filePath);
+            Node startState;
+            if (DFS(startState))
+            {
+
+            }
         }
 
         //Executes a DFS on a DFA. Returns true if the accept state is reached. Otherwise, false.

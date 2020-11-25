@@ -9,6 +9,7 @@ namespace InfiniteLanguageDFA
     {
         //This contains all of the information a definite state needs.
         private String name;
+        private bool starting;
         private bool accepting;
         private Node transitionA;
         private Node transitionB;
@@ -17,9 +18,10 @@ namespace InfiniteLanguageDFA
         private bool markedB;
 
         //Default constructor
-        public Node(String Name, bool a, Node tA, Node tB, bool mA, bool mB)
+        public Node(String Name, bool s, bool a, Node tA, Node tB, bool mA, bool mB)
         {
             this.name = Name;
+            this.starting = s;
             this.accepting = a;
             this.transitionA = tA;
             this.transitionB = tB;
@@ -28,10 +30,27 @@ namespace InfiniteLanguageDFA
             this.markedB = mB;
         }
 
+        public Node(Node o)
+        {
+            this.name = o.name;
+            this.starting = o.starting;
+            this.accepting = o.accepting;
+            this.transitionA = new Node(o.transitionA);
+            this.transitionB = new Node(o.transitionB);
+            this.marked = o.marked;
+            this.markedA = o.markedA;
+            this.markedB = o.markedB;
+        }
+
         //Getters
         public String getName()
         {
             return this.name;
+        }
+
+        public bool isStarting()
+        {
+            return this.starting;
         }
         public bool isAccepting()
         {
@@ -68,6 +87,12 @@ namespace InfiniteLanguageDFA
         {
             this.name = s;
         }
+
+        public void setStarting(bool b)
+        {
+            this.starting = b;
+        }
+
         public void setAccepting(bool b)
         {
             this.accepting = b;
