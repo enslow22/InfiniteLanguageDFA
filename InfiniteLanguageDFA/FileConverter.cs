@@ -15,7 +15,7 @@ namespace InfiniteLanguageDFA
         char[] sigma = null;
         public FileConverter(String p)
         {
-            String path = "";
+            String path = p;
             if (File.Exists(path))
             {
                 using (StreamReader sr = File.OpenText(path))
@@ -24,6 +24,8 @@ namespace InfiniteLanguageDFA
                     int numLines = 0;
                     while ((s = sr.ReadLine()) != null)
                     {
+                        Console.WriteLine();
+                        Console.WriteLine(s);
                         /*
                          * Parse File in this block.
                          * We can format the .txt file however we want.
@@ -54,7 +56,6 @@ namespace InfiniteLanguageDFA
                             default:
                                 break;
                         }
-
                         numLines++;
                     }
                 }
@@ -69,8 +70,6 @@ namespace InfiniteLanguageDFA
         {
             ArrayList names = new ArrayList();
             char[] cArr = s.ToCharArray();
-            int startIndex = -1;
-            int endIndex = -1;
             char c;
 
             //Count number of commas and add one. That is how many states you have.
@@ -84,9 +83,11 @@ namespace InfiniteLanguageDFA
             }
 
             Node[] states = new Node[count];
-            
 
-            for (int i = 0; i <= cArr.Length; i++)
+            String temp;
+            int startIndex = -1;
+            int endIndex = -1;
+            for (int i = 0; i < cArr.Length; i++)
             {
                 c = cArr[i];
 
@@ -102,16 +103,22 @@ namespace InfiniteLanguageDFA
 
                 if (startIndex != -1 && endIndex != -1)
                 {
-                    names.Add(s.Substring(startIndex + 1, endIndex - 1));
+                    int l = s.Length;
+                    temp = s.Substring(startIndex + 1, endIndex - startIndex - 1);
+                    names.Add(temp);
+                    Console.WriteLine(temp);
+                    temp = null;
                     startIndex = -1;
                     endIndex = -1;
                 }
             }
 
-            foreach (Node n in states){
-                IEnumerator namesEnum = names.GetEnumerator();
-                n.setName((String) namesEnum.Current);
+            IEnumerator namesEnum = names.GetEnumerator();
+            for (int i = 0; i < states.Length; i++) {
                 namesEnum.MoveNext();
+                Node tempN = new Node();
+                tempN.SetName((String)namesEnum.Current);
+                states[i] = tempN;
             }
 
             return states;
@@ -125,9 +132,10 @@ namespace InfiniteLanguageDFA
             char[] data = s.ToCharArray();
             char[] alpha = new char[2];
 
-            alpha[1] = data[s.IndexOf(",")-1];
-            alpha[2] = data[s.IndexOf(",") + 2];
-
+            int comma = s.IndexOf(",");
+            alpha[0] = data[comma - 1];
+            alpha[1] = data[comma + 1];
+            Console.WriteLine("a,b");
             return alpha;
         }
 
@@ -136,14 +144,12 @@ namespace InfiniteLanguageDFA
          */
         private void Transitions(String s)
         {
-            StringBuilder stringBuilder = new StringBuilder(s);
             char[] cArr = s.ToCharArray();
             char c;
             int startIndex = -1;
             int endIndex = -1;
 
-
-            for (int i = 0; i <= cArr.Length; i++)
+            for (int i = 0; i < cArr.Length; i++)
             {
                 c = cArr[i];
 
@@ -159,27 +165,48 @@ namespace InfiniteLanguageDFA
 
                 if (startIndex != -1 && endIndex != -1)
                 {
-                    String transition = s.Substring(startIndex, endIndex);
+                    String transition = s.Substring(startIndex, endIndex - startIndex + 1);
+                    Console.WriteLine(transition);
 
+                    //String name1 = s.Substring(startIndex + 1, transition.IndexOf(" ")-1);
+                    String name1 = transition.Substring(1,transition.IndexOf(' ')-1);
+                    //String name2 = s.Substring(transition.IndexOf(" ") + 4, 2);
+                    String name2 = transition.Substring(transition.IndexOf(' ') + 3, 2);
 
-                    String name1 = s.Substring(startIndex + 1, s.IndexOf(" "));
-                    String name2 = s.Substring(s.IndexOf(" ", s.IndexOf(" ") + 1), endIndex - 1);
+                    Node state1 = null;
+                    Node state2 = null;
 
+                    Console.WriteLine(name1 + " state 1");
+                    Console.WriteLine(name2 + " state 2");
 
-                    Node state1;
-                    Node state2;
-
+                    foreach (Node n in DFA)
+                    {
+                        if (n.GetName().Equals(name1))
+                        {
+                            state1 = n;
+                        }
+                        else if (n.GetName().Equals(name2))
+                        {
+                            state2 = n;
+                        }
+                    }
 
                     //a transition
                     if (transition.Contains(" " + sigma[0] + " "))
                     {
-                        
+                        state1.SetATransition(state2);
                     }
                     //b transition
                     else
                     {
-
+                        state1.SetBTransition(state2);
                     }
+
+                    transition = null;
+                    name1 = null;
+                    name2 = null;
+                    state1 = null;
+                    state2 = null;
                     startIndex = -1;
                     endIndex = -1;
                 }
@@ -195,9 +222,10 @@ namespace InfiniteLanguageDFA
             //Search through the Node[] and find the one with the name
             //that equals String s.
             foreach(Node n in DFA){
-                if (n.getName().Equals(s))
+                if (n.GetName().Equals(s))
                 {
-                    n.setStarting(true);
+                    Console.WriteLine(n.GetName());
+                    n.SetStarting(true);
                 }
                 return;
             }
@@ -215,7 +243,7 @@ namespace InfiniteLanguageDFA
             int endIndex = -1;
             char c;
 
-            for (int i = 0; i <= cArr.Length; i++)
+            for (int i = 0; i < cArr.Length; i++)
             {
                 c = cArr[i];
 
@@ -231,7 +259,7 @@ namespace InfiniteLanguageDFA
 
                 if (startIndex != -1 && endIndex != -1)
                 {
-                    names.Add(s.Substring(startIndex+1, endIndex-1));
+                    names.Add(s.Substring(startIndex + 1, endIndex - startIndex - 1));
                     startIndex = -1;
                     endIndex = -1;
                 }
@@ -239,9 +267,10 @@ namespace InfiniteLanguageDFA
 
             foreach (Node n in DFA)
             {
-                if (names.Contains(n.getName()))
+                if (names.Contains(n.GetName()))
                 {
-                    n.setAccepting(true);
+                    Console.WriteLine(n.GetName());
+                    n.SetAccepting(true);
                 }
             }
         }

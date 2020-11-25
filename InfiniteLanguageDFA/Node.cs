@@ -18,6 +18,13 @@ namespace InfiniteLanguageDFA
         private bool markedB;
 
         //Default constructor
+
+        public Node()
+        {
+            this.marked = false;
+        }
+
+
         public Node(String Name, bool s, bool a, Node tA, Node tB, bool mA, bool mB)
         {
             this.name = Name;
@@ -94,7 +101,7 @@ namespace InfiniteLanguageDFA
             this.starting = b;
         }
 
-        public void setAccepting(bool b)
+        public void SetAccepting(bool b)
         {
             this.accepting = b;
         }
