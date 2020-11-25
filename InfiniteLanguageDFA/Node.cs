@@ -43,52 +43,53 @@ namespace InfiniteLanguageDFA
         }
 
         //Getters
-        public String getName()
+        public String GetName()
         {
             return this.name;
         }
 
-        public bool isStarting()
+        public bool IsStarting()
         {
             return this.starting;
         }
-        public bool isAccepting()
+
+        public bool IsAccepting()
         {
             return this.accepting;
         }
 
-        public Node getATransition()
+        public Node GetATransition()
         {
             return this.transitionA;
         }
 
-        public Node getBTransition()
+        public Node GetBTransition()
         {
             return this.transitionB;
         }
 
-        public bool isMarked()
+        public bool IsMarked()
         {
             return this.marked;
         }
 
-        public bool isAMarked()
+        public bool IsAMarked()
         {
             return this.markedA;
         }
         
-        public bool isBMarked()
+        public bool IsBMarked()
         {
             return this.markedB;
         }
 
         //Setters
-        public void setName(String s)
+        public void SetName(String s)
         {
             this.name = s;
         }
 
-        public void setStarting(bool b)
+        public void SetStarting(bool b)
         {
             this.starting = b;
         }
@@ -98,27 +99,27 @@ namespace InfiniteLanguageDFA
             this.accepting = b;
         }
 
-        public void setATransition(Node n)
+        public void SetATransition(Node n)
         {
             this.transitionA = n;
         }
 
-        public void setBTransition(Node n)
+        public void SetBTransition(Node n)
         {
             this.transitionB = n;
         }
 
-        public void setMarked(bool b)
+        public void SetMarked(bool b)
         {
             this.marked = b;
         }
 
-        public void setAMarked(bool b)
+        public void SetAMarked(bool b)
         {
             this.markedA = b;
         }
 
-        public void setBMarked(bool b)
+        public void SetBMarked(bool b)
         {
             this.markedB = b;
         }

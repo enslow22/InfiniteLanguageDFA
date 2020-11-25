@@ -15,8 +15,7 @@ namespace InfiniteLanguageDFA
         char[] sigma = null;
         public FileConverter(String p)
         {
-            String path = p;
-
+            String path = "";
             if (File.Exists(path))
             {
                 using (StreamReader sr = File.OpenText(path))
