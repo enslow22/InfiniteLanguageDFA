@@ -13,9 +13,18 @@ namespace InfiniteLanguageDFA
     {
         Node[] DFA = null;
         char[] sigma = null;
-        public FileConverter(String p)
+        public FileConverter()
         {
-            String path = @"C:\Users\Ryan\Desktop\testcase2.txt";
+            
+        }
+
+        /*
+         * This method parses the file given by the user.
+         * https://docs.microsoft.com/en-us/dotnet/api/system.io.file?view=net-5.0
+         */
+        public void ParseFile(String path)
+        {
+            Console.WriteLine("Parsing the file located at: " + path + "\n");
             if (File.Exists(path))
             {
                 using (StreamReader sr = File.OpenText(path))
@@ -24,7 +33,6 @@ namespace InfiniteLanguageDFA
                     int numLines = 0;
                     while ((s = sr.ReadLine()) != null)
                     {
-                        Console.WriteLine();
                         Console.WriteLine(s);
                         /*
                          * Parse File in this block.
@@ -37,7 +45,8 @@ namespace InfiniteLanguageDFA
                          * Start State
                          * Accept State(s)
                          */
-                        switch (numLines){
+                        switch (numLines)
+                        {
                             case 0:
                                 SetOfStates(s);
                                 break;
@@ -54,11 +63,18 @@ namespace InfiniteLanguageDFA
                                 AcceptStates(s);
                                 break;
                             default:
+                                
                                 break;
                         }
                         numLines++;
+                        Console.WriteLine();
                     }
+                    Console.WriteLine("File was successfully converted! \n");
                 }
+            }
+            else
+            {
+                Console.WriteLine("Failed, could not find file.");
             }
         }
 
@@ -81,9 +97,14 @@ namespace InfiniteLanguageDFA
                     count++;
                 }
             }
-
             DFA = new Node[count];
 
+
+            //Here, we are converting the state names into strings
+            //Then we add those names to the nodes in the Node[] object.
+            //We find the start and end index of the state by looking at 
+            //'[', ' ', ']', and ','.
+            //Assuming the file is formatted correctly, these will produce aa valid result.
             String temp;
             int startIndex = -1;
             int endIndex = -1;
@@ -146,6 +167,8 @@ namespace InfiniteLanguageDFA
             int startIndex = -1;
             int endIndex = -1;
 
+            //We find an individual transition and then add that transition
+            //to the Node object.
             for (int i = 0; i < cArr.Length; i++)
             {
                 c = cArr[i];
@@ -169,10 +192,6 @@ namespace InfiniteLanguageDFA
                     String name1 = transition.Substring(1,transition.IndexOf(' ')-1);
                     //String name2 = s.Substring(transition.IndexOf(" ") + 4, 2);
                     String name2 = transition.Substring(transition.IndexOf(' ') + 3, 2);
-         
-
-                    Console.WriteLine(name1 + " state 1");
-                    Console.WriteLine(name2 + " state 2");
 
                     Node state1 = null;
                     Node state2 = null;
@@ -188,6 +207,10 @@ namespace InfiniteLanguageDFA
                             state2 = DFA[n];
                         }
                     }
+
+                    //At this point, we have parsed a transition and we have 3 things:
+                    //The start, transition variable, and destination
+                    //With these three things, we can set the transition in the Node properly.
 
                     //a transition
                     if (transition.Contains(" " + sigma[0] + " "))
@@ -207,25 +230,6 @@ namespace InfiniteLanguageDFA
                     endIndex = -1;
                 }
             }
-
-            /*
-            //set all the transitions
-            for (int i = DFA.Length-1; i >= 0; i--)
-            {
-                for (int j = 0; j < DFA.Length; j++)
-                {
-                    if (DFA[j].GetName() == DFA[i].GetATransition().GetName())
-                    {
-                        DFA[i].SetATransition(DFA[j]);
-                    }
-                    if (DFA[j].GetName() == DFA[i].GetBTransition().GetName())
-                    {
-                        DFA[i].SetBTransition(DFA[j]);
-                    }
-                }
-            }
-            */
-
         }
 
         /*
@@ -252,6 +256,7 @@ namespace InfiniteLanguageDFA
         {
             ArrayList names = new ArrayList();
 
+            //Uses the same parsing technique as Set of States
             char[] cArr = s.ToCharArray();
             int startIndex = -1;
             int endIndex = -1;

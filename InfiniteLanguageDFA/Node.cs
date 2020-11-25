@@ -5,7 +5,7 @@ using System.Text;
 
 namespace InfiniteLanguageDFA
 {
-    public class Node
+    public class Node : ICloneable
     {
         //This contains all of the information a definite state needs.
         private String name;
@@ -15,6 +15,7 @@ namespace InfiniteLanguageDFA
         private Node transitionB;
         private bool marked;
         private bool marked2;
+        private bool marked3;
 
         //Default constructor
 
@@ -27,6 +28,19 @@ namespace InfiniteLanguageDFA
             this.transitionB = null;
             this.marked = false;
             this.marked2 = false;
+            this.marked3 = false;
+        }
+
+        public Node(Node n)
+        {
+            this.name = n.name;
+            this.starting = n.starting;
+            this.accepting = n.accepting;
+            this.transitionA = null;
+            this.transitionB = null;
+            this.marked = false;
+            this.marked2 = false;
+            this.marked3 = false;
         }
 
 
@@ -76,6 +90,10 @@ namespace InfiniteLanguageDFA
             return this.marked2;
         }
 
+        public bool IsMarked3()
+        {
+            return this.marked3;
+        }
         //Setters
         public void SetName(String s)
         {
@@ -110,6 +128,24 @@ namespace InfiniteLanguageDFA
         public void SetMarked2(bool b)
         {
             this.marked2 = b;
+        }
+
+        public void SetMarked3(bool b)
+        {
+            this.marked3 = b;
+        }
+
+        public object Clone()
+        {
+            Node t = new Node(this.name);
+            t.accepting = this.accepting;
+            t.starting = this.starting;
+            t.transitionA = new Node(this.transitionA);
+            t.transitionB = new Node(this.transitionB);
+            t.marked = this.marked;
+            t.marked2 = this.marked2;
+
+            return t;
         }
     }
 }
