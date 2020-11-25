@@ -27,12 +27,12 @@ namespace InfiniteLanguageDFA
         public bool DFS(Node n)
         {
             // check if current node is marked
-            if (n.isMarked())
+            if (n.IsMarked())
             {
                 // current node is a cycle
                 cycle = n;
 
-                if (cycle.isAccepting())
+                if (cycle.IsAccepting())
                 {
                     // has a loop and can reach the accepting state
                     return true;
@@ -40,19 +40,19 @@ namespace InfiniteLanguageDFA
                 else
                 {
                     // recursively call DFS on current node
-                    DFS(n.getATransition());
-                    DFS(n.getBTransition());
+                    DFS(n.GetATransition());
+                    DFS(n.GetBTransition());
                 }
             }
             else
             {
                 // if node isn't previously marked mark it
-                n.setMarked(true);
+                n.SetMarked(true);
                 // recursively call function until a cycle is found.
-                DFS(n.getATransition());
-                DFS(n.getBTransition());
+                DFS(n.GetATransition());
+                DFS(n.GetBTransition());
             }
-          
+
             // return false if language is not infinite
             return false;
         }
